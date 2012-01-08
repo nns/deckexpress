@@ -5,6 +5,9 @@
 
 var express = require('express')
 		sio = require('socket.io')
+		MemoryStore = express.session.MemoryStore
+		sessionStore = new MemoryStore()
+		parseCookie = require('connect').utils.parseCookie
 
 var app = module.exports = express.createServer();
 
@@ -16,7 +19,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
 	app.use(express.cookieParser());
-	app.use(express.session({secret:'secret'}));
+	app.use(express.session({secret:'secret',store:sessionStore}));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
@@ -50,9 +53,31 @@ console.log("Express server listening on port %d in %s mode", app.address().port
 
 var io = sio.listen(app);
 
+io.configure(function(){
+	io.set('authorization',function(handshakeData, callback){
+		if(handshakeData.headers.cookie){
+			var cookie = handshakeData.headers.cookie;
+			var sessionID = parseCookie(cookie)['connect.sid'];
+			handshakeData.sessionID = sessionID;
+		} else {
+			return callback('unknown cookie');
+		}
+		return callback(null, true);
+	});
+});
+
 io.sockets.on('connection',function(socket){
+	(function(){
+		sessionStore.get(socket.handshake.sessionID, function(err, esession){
+			if(err){require('util').log(err); return false};
+			console.log(esession);
+			socket.session = esession;
+		});
+	})();
+	console.log(socket.session);
 	console.log('connection');
 	socket.on('go',function(to){
+		console.log('socket.iosession:%s',socket.session.controller);
 		socket.broadcast.emit('go',to);
 	});
 	socket.on('msg',function(msg){
