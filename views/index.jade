@@ -6,6 +6,7 @@ html
 		meta(name="viewport",content="width=1024, user-scalable=no")
 		link(rel="stylesheet",href="/stylesheets/deck.core.css",type="text/css")
 		link(rel="stylesheet",href="/stylesheets/neon.css",type="text/css")
+		link(rel="stylesheet",href="/stylesheets/style.css",type="text/css")
 		link(rel="stylesheet",href="/stylesheets/horizontal-slide.css",type="text/css")
 
 		script(src="/javascripts/modernizr.custom.js",type="text/javascript")
@@ -34,8 +35,20 @@ html
 		secton.slide
 			h1 test
 		section.slide
-			h2 hello deck world
-			h3 test
-			h3 本日のメニュー
-			h3 test
+			h2.neon_pink node.jsとは何か 
+			h3 1.test
+			h3.neon_blue#a  2.本日のメニュー
+			h3.neon_pink#b test
+			h3.neon_orange テスト
 			h3=controller
+		section.slide
+			h2.neon_blue more effects
+			p exsample
+			ul
+				li.slide one
+				li.slide two
+				li.slide three
+		section.slide
+			h2 code exsample
+			h3 javascript
+			include code.html

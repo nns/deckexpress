@@ -1,8 +1,34 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.deck-container .slide h2.neon_pink{
+	color:#f3c;
+	font-weight:100;
+	text-shadow:0 0 15px #f3c, 0 0 2px #f3c;
 }
 
-a {
-  color: #00B7FF;
+.deck-container .slide h2.neon_blue{
+	color:#63f;
+	font-weight:100;
+	text-shadow:0 0 15px #63f, 0 0 2px #63f;
+}
+.deck-container .slide h3.neon_pink{
+	color:#f3c;
+	font-weight:100;
+	text-shadow:0 0 10px #f3c, 0 0 2px #f3c;
+}
+
+.deck-container .slide h3.neon_blue{
+	color:#63f;
+	font-weight:100;
+	text-shadow:0 0 12px #63f, 0 0 2px #63f;
+}
+.deck-container .slide h3.neon_orange{
+	color:#f63;
+	font-weight:100;
+	text-shadow:0 0 12px #f63, 0 0 2px #f63;
+}
+
+.deck-previous {
+	-webkit-transform:translate3d(-300%, 0, 0);
+}
+.deck-next {
+	-webkit-transform:translate3d(0, -300%, 0);
 }
