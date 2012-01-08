@@ -20,13 +20,19 @@ html
 				socket.on('go',function(to){
 					$.deck('go',to);
 				});
+				socket.on('msg',function(message){
+					$('#msg').text(message);
+				});
 			});
-		- if (controller == true)
+		- if (controller)
 			script
 				$(function(){
 					$(document).bind('deck.change', function(event, from, to) {
 						if(from == to) return;
 						socket.emit('go',to);
+					});
+					$('#button').click(function(){
+						socket.emit('msg',$('#msgtext').val());
 					});
 				});
 	body.deck-container
@@ -52,3 +58,10 @@ html
 			h2 code example
 			h3 javascript
 			include code.html
+		section.slide
+			h2.neon_blue messaging sample
+				h3#msg
+			-if (controller)
+				div.msgdiv
+					button#button
+					input#msgtext(type="text")

@@ -55,4 +55,7 @@ io.sockets.on('connection',function(socket){
 	socket.on('go',function(to){
 		socket.broadcast.emit('go',to);
 	});
+	socket.on('msg',function(msg){
+		io.sockets.emit('msg',msg);
+	});
 });
