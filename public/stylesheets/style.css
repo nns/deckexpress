@@ -26,9 +26,13 @@
 	text-shadow:0 0 12px #f63, 0 0 2px #f63;
 }
 
-.deck-previous {
+.deck-previous #a, .deck-previous #b{
 	-webkit-transform:translate3d(-300%, 0, 0);
 }
-.deck-next {
+.deck-next #a, .deck-next #b{
 	-webkit-transform:translate3d(0, -300%, 0);
+}
+
+ #a,#b{
+	-webkit-transition: -webkit-transform 1000ms ease-in-out ;
 }
